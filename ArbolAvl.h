@@ -1,4 +1,4 @@
-#ifndef __ARBOLAVl_H__
+#ifndef __ARBOLAVL_H__
 #define __ARBOLAVL_H__
 
 #include "NodoAvl.h"
@@ -29,12 +29,12 @@ class ArbolAvl{
         void setRaiz(NodoAvl<T> *nodo);
         bool validacionEquilibrio();
         bool validacionEquilibrio(NodoAvl<T> *nodo);
-        void rotacionIzquierda(NodoAvl<T> *nodo); 
-        void rotacionDerecha(NodoAvl<T> *nodo);
+        NodoAvl<T> *rotacionIzquierda(NodoAvl<T> *nodo); 
+        NodoAvl<T> * rotacionDerecha(NodoAvl<T> *nodo);
         void rotacionIzquierdaDerecha(NodoAvl<T> *nodo);
         void rotacionDerechaIzquierda(NodoAvl<T> *nodo);
 };
 
-
+#include "ArbolAvl.hxx"
 
 #endif

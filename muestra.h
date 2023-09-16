@@ -1,5 +1,5 @@
-#ifdef MUESTRA_H
-#define MUESTRA_H
+#ifdef __MUESTRA_H__
+#define __MUESTRA_H__
 
 
 template <class T>

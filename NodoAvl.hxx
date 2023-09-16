@@ -1,4 +1,5 @@
 #include "NodoAvl.h"
+#include <list>
 
 template <class T>
 NodoAvl<T>::NodoAvl() {
@@ -7,11 +8,9 @@ NodoAvl<T>::NodoAvl() {
 
 template <class T>
 NodoAvl<T>::~NodoAvl() {
-    std::list<NodoAvl<T>*>::iterator it;
-    for (it = desc.begin(); it != this->desc.end(); it++) {
-        delete (*it);
-    }
-    this->descendientes.clear();
+    delete this->dato;
+    delete this->descIzq;
+    delete this->descDer;
 }
 
 template <class T>
@@ -37,13 +36,13 @@ NodoAvl<T>* NodoAvl<T>::getDescDer() {
 template <class T>
 void NodoAvl<T>::setDescIzq(NodoAvl<T>* nval) {
     this->descIzq = nval; // Asigna el nodo descendiente izquierdo
-    this->descIzq->setPadre(this); // Asigna el padre del nodo descendiente izquierdo
+   
 }
 
 template <class T>
 void NodoAvl<T>::setDescDer(NodoAvl<T>* nval) {
     this->descDer = nval; // Asigna el nodo descendiente derecho
-    this->descDer->setPadre(this); // Asigna el padre del nodo descendiente derecho
+   
 }
 
 template <class T>

@@ -1,5 +1,6 @@
 #include "ArbolAvl.h"
-
+#include "NodoAvl.h"
+#include <iostream>
 #include <queue>
 
 template <class T>
@@ -10,7 +11,7 @@ ArbolAvl<T>::ArbolAvl(){
 template <class T>
 ArbolAvl<T>::~ArbolAvl(){
     if (   this->raiz != NULL){
-    delete->raiz;
+    delete this->raiz;
     this->raiz = NULL;
     }
 }
@@ -31,7 +32,7 @@ T& ArbolAvl<T>::datoRaiz(){
     int ArbolAvl<T>::altura(){
         if (this->esvacio())
         {
-            return -1
+            return -1;
         }
         
         return this->altura(this->raiz);
@@ -42,9 +43,9 @@ template <class T>
 int ArbolAvl<T>::altura(NodoAvl<T>* nodo){
     int valt;
 
-    if (nodo->eshoja())
+    if (nodo->esHoja())
     {
-        valt 0;
+        valt = 0;
     }
     else {
         int valt_izd = -1;
@@ -121,7 +122,7 @@ bool ArbolAvl<T>::insertar(T val){
     }
 
     if (!duplicado){
-        NodoNunario<T>* nuevo = new NodoAvl<T>(val); //val se pasa como parametro de constructot
+        NodoAvl<T>* nuevo = new NodoAvl<T>(val); //val se pasa como parametro de constructot
         if (nuevo != NULL) {
             if (val < padre->getDato()){ 
                 padre->setDescIzq(nuevo); //si val es menor que el dato del padre, se inserta a la izquierda 
@@ -262,7 +263,7 @@ void ArbolAvl<T>::preOrden(){
 template<class T> 
 void ArbolAvl<T>::preOrden(NodoAvl<T>* nodo){
     //1. imprimir el valor del nodo
-    std::cout << nodo->getDato() << std::" ";
+    std::cout << nodo->getDato() << " ";
     //2. llamar a preorden sobre hijo izquierdo
     this->preOrden(nodo->getDescIzq());
     //3. llamar a preorden sobre hijo derecho
@@ -284,7 +285,7 @@ void ArbolAvl<T>::inOrden(NodoAvl<T>* nodo){
     //2. llamar a inorden sobre hijo izquierdo
         this->inOrden(nodo->getDescIzq());
     //3. imprimir el valor del nodo
-        std::cout << nodo->getDato() << std::" ";
+        std::cout << nodo->getDato() << " ";
     //4. llamar a inorden sobre hijo derecho
         this->inOrden(nodo->getDescDer());
 
@@ -297,7 +298,7 @@ void ArbolAvl<T>::inOrden(NodoAvl<T>* nodo){
 template<class T>
 void ArbolAvl<T>::postOrden(){
     if(!this->esVacio()){
-        this->postOrder(this->raiz);
+        this->postOrden(this->raiz);
     }
 }
 
@@ -306,7 +307,7 @@ void ArbolAvl<T>::postOrden(NodoAvl<T>* nodo){
     if (nodo != NULL){
         this->postOrden(nodo->getDescIzq()); //llamada recursiva sobre hijo izquierdo
         this->postOrden(nodo->getDescDer()); //llamada recursiva sobre hijo derecho
-        std::cout << nodo->getDato() << std::" "; //imprimir el valor del nodo
+        std::cout << nodo->getDato() << " "; //imprimir el valor del nodo
     }
 }
 
@@ -320,7 +321,7 @@ void ArbolAvl<T>::nivelOrden(){
         while(!cola.empty()){
             nodo = cola.front(); //obtener el nodo del frente de la cola
             cola = cola.pop();
-            std::cout << nodo->getDato() << std::" ";
+            std::cout << nodo->getDato() << " ";
             if (nodo->getDescIzq() != NULL){ //si el nodo tiene hijo izquierdo, agregarlo a la cola
                 cola.push(nodo->getDescIzq());
             }
@@ -355,7 +356,7 @@ bool ArbolAvl<T>::validacionEquilibrio(NodoAvl<T>* nodo){
         return true;
     }
 
-    if (nodo->altura() > 1){
+    if (altura(nodo) > 1){
 
     int altura_izq = 0;
     int altura_der = 0;
@@ -372,7 +373,7 @@ bool ArbolAvl<T>::validacionEquilibrio(NodoAvl<T>* nodo){
 
     if (diferencia_altura >= -2|| diferencia_altura <= 2){
         if(diferencia_altura == 2){
-            if (nodo->getDescIzq()->altura() == 1){
+            if (this->altura(nodo->getDescIzq()) == 1){
                 this->rotacionDerecha(nodo);
             }
             else{
@@ -380,7 +381,7 @@ bool ArbolAvl<T>::validacionEquilibrio(NodoAvl<T>* nodo){
             }
         }
         else if (diferencia_altura == -2){
-            if (nodo->getDescDer()->altura() == 1){
+            if (this->altura(nodo->getDescIzq()) == 1){
                 this->rotacionDerechaIzquierda(nodo);
             }
             else{
@@ -396,7 +397,7 @@ bool ArbolAvl<T>::validacionEquilibrio(NodoAvl<T>* nodo){
             this->validacionEquilibrio(nodo->getDescDer());
         }
 
-        if(diferencia_altura == 1, diferencia_altura == -1){
+        if(diferencia_altura == 1 || diferencia_altura == -1){
             return true;
         }
     }
@@ -407,23 +408,26 @@ bool ArbolAvl<T>::validacionEquilibrio(NodoAvl<T>* nodo){
     }
 }
 
+return true;
+
 }
 
 template<class T>
-void ArbolAvl<T>::rotacionIzquierda(NodoAvl<T>* nodo){
+NodoAvl<T> * ArbolAvl<T>::rotacionIzquierda(NodoAvl<T>* nodo){
     NodoAvl<T>* nodo_padre = nodo->getDescDer(); //nodo padre es el hijo derecho del nodo
     nodo->setDescDer(nodo_padre->getDescIzq()); //el hijo derecho del nodo es el hijo izquierdo del nodo padre
     nodo_padre->setDescIzq(nodo); //el hijo izquierdo del nodo padre es el nodo
     nodo = nodo_padre; //el nodo es el nodo padre
-
+    return nodo;
 }
 
 template<class T>
-void ArbolAvl<T>::rotacionDerecha(NodoAvl<T>* nodo){
+NodoAvl<T> * ArbolAvl<T>::rotacionDerecha(NodoAvl<T>* nodo){
     NodoAvl<T>* nodo_padre = nodo->getDescIzq(); //nodo padre es el hijo izquierdo del nodo
-    nodo->setDesIzq(nodo_padre->getDescDer()); //el hijo izquierdo del nodo es el hijo derecho del nodo padre
+    nodo->setDescIzq(nodo_padre->getDescDer()); //el hijo izquierdo del nodo es el hijo derecho del nodo padre
     nodo_padre->setDescDer(nodo); //el hijo derecho del nodo padre es el nodo
     nodo = nodo_padre; //el nodo es el nodo padre
+    return nodo;
 }
 
 template<class T>

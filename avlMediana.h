@@ -5,21 +5,23 @@
 #include "muestra.h"
 #include <list>
 #include "NodoAvl.h"
+#include <iostream>
+#include <string>
 
 template <class T>
 class AvlMediana {
     protected:
 
-        std::list<Muestra> datos;
+        std::list<Muestra<T>::Muestra> datos;
         ArbolAvl<T> arbol;
         T mediana;
         int nivelMediana;
     public:
-         MuestraAleatoria();
-        ~MuestraAleatoria();
+        AvlMediana();
+        ~AvlMediana();
         T calcularMediana(); //Calcula la mediana del arbol y el nivel en el que se encuentra. Devuelve el valor de la mediana
         int getNivelMediana();
-        void revisarAccion(list<Muesta> datos); // Inserta y/o elimina el dato de acuerdo a lo que diga la accion. A (insertar), E (eliminar)
+        void revisarAccion(list<Muestra> datos); // Inserta y/o elimina el dato de acuerdo a lo que diga la accion. A (insertar), E (eliminar)
         T getMediana();
         void setMediana(T mediana);
         void setNivelMediana(int nivelMediana);
@@ -27,7 +29,7 @@ class AvlMediana {
         ArbolAvl<T> getArbol();
         void setDatos(std::list<Muestra> datos);
         std::list<Muestra> getDatos();
-         void leerArchivo(string nombreArchivo); //lee un archivo de texto y guarda la accion y el dato.
+         void leerArchivo(std::string nombreArchivo); //lee un archivo de texto y guarda la accion y el dato.
 };
 
 #endif
