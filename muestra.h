@@ -1,4 +1,4 @@
-#ifdef __MUESTRA_H__
+#ifndef __MUESTRA_H__
 #define __MUESTRA_H__
 
 
@@ -17,7 +17,7 @@ class Muestra {
        
 };
 
-#include "Muestra.hxx"
+#include "muestra.hxx"
 
 
 #endif
