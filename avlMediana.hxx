@@ -1,6 +1,7 @@
 #include "avlMediana.h"
 #include "muestra.h"
 #include "ArbolAvl.h"
+#include <iostream>
 
 template <class T>
 AvlMediana<T>::AvlMediana(){ //constructor
@@ -16,23 +17,42 @@ AvlMediana<T>::~AvlMediana(){ //destructor
 template <class T>
 T AvlMediana<T>::calcularMediana(){ //Calcula la mediana del arbol y el nivel en el que se encuentra. Devuelve el valor de la mediana
     int tamano = this->arbol->tamano();
+    typename std::list<T> lista = this->arbol->inOrdenLista();
     T mediana;
     nivelMediana = 0;
     if (tamano % 2 == 0)
     {
         int mitad = tamano / 2;
         int mitad2 = mitad + 1;
+
+        std::list<T>::iterator it = lista.begin();
+        std::list<T>::iterator it2 = lista.begin();
+
+        std::advance(it, mitad-1); //recorrer el arbol hasta encontrar el elemento en la posicion mitad -1 (porque el iterador comienza en 0)
+        std::advance(it2, mitad2-1); //recorrer el arbol hasta encontrar el elemento en la posicion mitad2 -1 (porque el iterador comienza en 0)    
+
+        mediana = (*it + *it2) / 2;
         //recorrer el arbol hasta encontrar en la posicion mitad y mitad2
         //luego sumar los valores en esas posiciones y dividirlos entre 2
+        nivelMediana = this->arbol->altura(->arbol->buscar(mediana))
     }
     else {
         int mitad = (tamano + 1) / 2;
+
+        std::list<T>::iterator it = lista.begin();
+
+        std::advance(it, mitad-1); //recorrer el arbol hasta encontrar el elemento en la posicion mitad -1 (porque el iterador comienza en 0)
+
+        mediana = *it;
         //recorrer el arbol hasta encontrar el elemento en la posicion mitad
+        nivelMediana = this->arbol->altura(->arbol->buscar(mediana))
     }
 
-    nivelMediana = this->arbol->altura(mediana);
+    
     setMediana(mediana);
     setNivelMediana(nivelMediana);
+
+    std::cout << "La mediana es: " << mediana <<  "Y esta en el nivel: " << nivelMediana << std::endl;
 
     return mediana;
 }

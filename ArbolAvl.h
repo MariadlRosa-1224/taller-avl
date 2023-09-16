@@ -33,6 +33,8 @@ class ArbolAvl{
         NodoAvl<T> * rotacionDerecha(NodoAvl<T> *nodo);
         void rotacionIzquierdaDerecha(NodoAvl<T> *nodo);
         void rotacionDerechaIzquierda(NodoAvl<T> *nodo);
+        void inOrdenLista();
+        typename std::list<T> inOrdenLista(NodoAvl<T>* nodo, typename std::list<T> lista);
 };
 
 #include "ArbolAvl.hxx"

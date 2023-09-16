@@ -445,8 +445,32 @@ void ArbolAvl<T>::rotacionDerechaIzquierda(NodoAvl<T>* nodo){
 }
 
 
+// inorden que retorna el cotenido de cada nodo
 
 
+template<class T>
+void ArbolAvl<T>::inOrdenLista(){
+    typename std::list<T> lista;
+    if (!this->esVacio()){
+        this->inOrdenLista(this->raiz, lista);
+    }
+}
 
+template<class T>
+typename std::list<T> ArbolAvl<T>::inOrdenLista(NodoAvl<T>* nodo, typename std::list<T> lista){
+    //1. verificar si el nodo es nulo
+    if (nodo != NULL){
+    //2. llamar a inorden sobre hijo izquierdo
+        this->inOrdenLista(nodo->getDescIzq(), lista);
+    //3. imprimir el valor del nodo
+        lista.push_back(nodo->getDato());
+    //4. llamar a inorden sobre hijo derecho
+        this->inOrdenLista(nodo->getDescDer(), lista);
 
+    
+    }
+
+    return lista;
+
+}
 
