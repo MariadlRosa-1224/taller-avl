@@ -8,9 +8,10 @@ NodoAvl<T>::NodoAvl() {
 
 template <class T>
 NodoAvl<T>::~NodoAvl() {
-    delete this->dato;
-    delete this->descIzq;
-    delete this->descDer;
+    this->dato = NULL;
+    this->descIzq = NULL;
+    this->descDer = NULL;   
+    
 }
 
 template <class T>

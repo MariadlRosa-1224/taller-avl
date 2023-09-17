@@ -10,8 +10,8 @@ Muestra<T>::Muestra(){
 
 template <class T>
 Muestra<T>::~Muestra(){
-    delete this->dato;
-    delete this->accion;
+    this->dato = NULL;
+    this->accion = NULL;
 }
 
 template <class T>

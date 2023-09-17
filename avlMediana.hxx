@@ -52,7 +52,6 @@ T AvlMediana<T>::calcularMediana(){ //Calcula la mediana del arbol y el nivel en
     setMediana(mediana);
     setNivelMediana(nivelMediana);
 
-    std::cout << "La mediana es: " << mediana <<  "Y esta en el nivel: " << nivelMediana << std::endl;
 
     return mediana;
 }

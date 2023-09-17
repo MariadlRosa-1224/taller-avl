@@ -6,27 +6,14 @@
 #include <string>
 
 int main() {
-    //probando arbol avl. esto se elimina luego
-
-    ArbolAvl<int> *arbol = new ArbolAvl<int>();
-    arbol->insertar(5);
-    arbol->insertar(3);
-    arbol->insertar(7);
-    arbol->insertar(2);
-    arbol->insertar(4);
-
-    arbol->preOrden();
-    arbol->inOrden();
-    arbol->postOrden();
-
-    // ahora si la mediana del arbol
-
-    /* string nombreArchivo = "datos-test1.txt";
-
-    AvlMediana<int> *arbolMediana = new AvlMediana<int>();
-    arbolMediana->leerArchivo(nombreArchivo);
-    arbolMediana->calcularMediana();
-    cout << "La mediana es: " << arbolMediana->getMediana() << endl;
-    cout << "El nivel de la mediana es: " << arbolMediana->getNivelMediana() << endl; */
+    AvlMediana<int> avl = AvlMediana<int>();
+    ArbolAvl<int> arbol = ArbolAvl<int>();
+    avl.setArbol(arbol);
+    avl.leerArchivo("datos.txt");
+    avl.revisarAccion(avl.getDatos());
+    avl.calcularMediana();
+    std::cout << "Mediana: " << avl.getMediana() << std::endl;
+    std::cout << "Nivel: " << avl.getNivelMediana() << std::endl;
+    return 0;
 
 }
