@@ -21,7 +21,6 @@ class NodoAvl {
     void setDescDer(NodoAvl<T>* nval);
     bool esHoja();
     bool esRaiz();
-    NodoAvl<T>* getPadre();
 };
 
 #include "NodoAvl.hxx"
